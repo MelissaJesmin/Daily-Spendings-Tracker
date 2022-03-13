@@ -8,7 +8,7 @@ class DateItem extends StatelessWidget {
   final String item;
   final String price;
   const DateItem(this.date, this.item, this.price);
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +34,7 @@ class DateItem extends StatelessWidget {
                 fontWeight: FontWeight.w800, fontSize: 80, height: 0.9
                 ),
           );
-          
+  
   Widget ItemPrint() => Text(item,
             
             style: TextStyle(

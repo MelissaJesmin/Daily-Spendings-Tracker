@@ -16,6 +16,7 @@ class ItemsPage extends StatelessWidget {
           children: <Widget>[
            // NavigationBars(),
             DatePrint(context),
+           //DatePrint1 (context),
             //ItemPrint(),
             //PricePrint(),
             Goback(context),
@@ -43,7 +44,25 @@ class ItemsPage extends StatelessWidget {
           ),
         ),
       );
-
+  /*Widget DatePrint1 (context) => 
+  Center(
+        child: Card(
+          child: InkWell(
+            splashColor: Colors.blue.withAlpha(30),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DateItem(date,item,price)),
+              );
+            },
+            child: SizedBox(
+              width: 100,
+              height: 50,
+              child: Text(date),
+            ),
+          ),
+        ),
+      );*/
   //Widget ItemPrint() => Text(item);
   //Widget PricePrint() => Text(price);
 
