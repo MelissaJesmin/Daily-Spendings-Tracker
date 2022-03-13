@@ -17,22 +17,33 @@ class ItemsPage extends StatelessWidget {
     dates.add(date);
     items.add(item);
     prices.add(price);
-    return Scaffold(
-      backgroundColor: Colors.cyan[100],
-      body: ListView.builder(
-        
-        itemCount: dates.length,
-        itemBuilder: (BuildContext context, int index) {
-          return GFAccordion(
-            title: dates[index],
-            content: 'Item: ' + items[index] + '\nPrice: \$' + prices[index],
-            collapsedTitleBackgroundColor: Colors.lightBlue.shade50,
-            expandedTitleBackgroundColor: Colors.lightBlue.shade200,
-            contentBackgroundColor: Colors.lightBlue[50],
-          );
-        }
-      ),
-      bottomNavigationBar: Goback(context),
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("/background.png"), // <-- BACKGROUND IMAGE
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        Scaffold(
+          backgroundColor:Colors.transparent,
+        body:ListView.builder(
+          itemCount: dates.length,
+          itemBuilder: (BuildContext context, int index) {
+            return GFAccordion(
+              title: dates[index],
+              content: 'Item: ' + items[index] + '\nPrice: \$' + prices[index],
+              collapsedTitleBackgroundColor: Colors.lightBlue.shade50,
+              expandedTitleBackgroundColor: Colors.lightBlue.shade200,
+              contentBackgroundColor: Colors.lightBlue[50],
+            );
+          }
+        ),
+        bottomNavigationBar: Goback(context),
+        )
+      ]
     );
   }
   // Widget build(BuildContext context) {
