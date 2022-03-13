@@ -17,34 +17,33 @@ class ItemsPage extends StatelessWidget {
     dates.add(date);
     items.add(item);
     prices.add(price);
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("/background.png"), // <-- BACKGROUND IMAGE
-              fit: BoxFit.cover,
-            ),
+    return Stack(children: [
+      Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/bluebg.jpg"), // <-- BACKGROUND IMAGE
+            fit: BoxFit.cover,
           ),
         ),
-        Scaffold(
-          backgroundColor:Colors.transparent,
-        body:ListView.builder(
-          itemCount: dates.length,
-          itemBuilder: (BuildContext context, int index) {
-            return GFAccordion(
-              title: dates[index],
-              content: 'Item: ' + items[index] + '\nPrice: \$' + prices[index],
-              collapsedTitleBackgroundColor: Colors.lightBlue.shade50,
-              expandedTitleBackgroundColor: Colors.lightBlue.shade200,
-              contentBackgroundColor: Colors.lightBlue[50],
-            );
-          }
-        ),
+      ),
+      Scaffold(
+        backgroundColor: Colors.transparent,
+        body: ListView.builder(
+            itemCount: dates.length,
+            itemBuilder: (BuildContext context, int index) {
+              return GFAccordion(
+                title: dates[index],
+                content:
+                    'Item: ' + items[index] + '\nPrice: \$' + prices[index],
+                collapsedTitleBackgroundColor: Color.fromARGB(255, 143, 219, 255),
+                expandedTitleBackgroundColor: Colors.lightBlue.shade200,
+                contentBackgroundColor: Color.fromARGB(255, 186, 233, 255),
+                textStyle: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              );
+            }),
         bottomNavigationBar: Goback(context),
-        )
-      ]
-    );
+      )
+    ]);
   }
   // Widget build(BuildContext context) {
   //   return Scaffold(
@@ -99,11 +98,13 @@ class ItemsPage extends StatelessWidget {
   //Widget PricePrint() => Text(price);
 
   Widget Goback(context) => ElevatedButton(
-
         onPressed: () {
           Navigator.pop(context);
         },
-        child: const Text('Go Back!'),
+        child: const Text('Back'),
+        style: ElevatedButton.styleFrom(
+            primary: Color.fromARGB(255, 124, 218, 255),
+            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+            textStyle: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
       );
 }
-
