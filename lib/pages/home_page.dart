@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:team2/firestore/database.dart';
 import 'package:team2/pages/items.dart';
 
-
 /*void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -21,27 +20,29 @@ class _MyCustomFormState extends State<HomePage> {
   final myPrice = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 600,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            'Daily Spendings Tracker',
-            style: TextStyle(
-                fontWeight: FontWeight.w800, fontSize: 80, height: 0.9),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          AddDate(),
-          AddItem(),
-          AddPrice(),
-          Button(),
-        ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 500.0),
+      child: Container(
+        width: 500,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Daily Spendings Tracker',
+              style: TextStyle(color: Color.fromARGB(255, 141, 204, 255),
+                  fontWeight: FontWeight.w700, fontSize: 70, height: 0.9), textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            AddDate(),
+            AddItem(),
+            AddPrice(),
+            Button(),
+          ],
+        ),
       ),
-      
     );
   }
 
@@ -63,12 +64,16 @@ class _MyCustomFormState extends State<HomePage> {
                 builder: (context) =>
                     ItemsPage(myDate.text, myItem.text, myPrice.text)),
           );
-     
 
           /*FirebaseFirestore.instance
               .collection('data')
               .add({'item': 'data added'});*/
         },
+
+        style: ElevatedButton.styleFrom(
+            primary: Color.fromARGB(255, 168, 230, 255),
+            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+            textStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
       );
 
   Widget AddDate() => TextFormField(
@@ -86,6 +91,4 @@ class _MyCustomFormState extends State<HomePage> {
         decoration: InputDecoration(
             border: OutlineInputBorder(), hintText: 'Enter the price'),
       );
-
-  
 }
