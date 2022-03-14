@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:team2/firestore/database.dart';
 import 'package:team2/pages/items.dart';
 
-/*void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-
-}*/
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
   @override
@@ -14,11 +9,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyCustomFormState extends State<HomePage> {
-  List dataList = [];
   final myDate = TextEditingController();
   final myItem = TextEditingController();
   final myPrice = TextEditingController();
+
   @override
+
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 500.0),
@@ -58,6 +54,10 @@ class _MyCustomFormState extends State<HomePage> {
           ),
         ),
         onPressed: () {
+                FireStoreDataBase().addStudents(myDate.text,myItem.text, myPrice.text);
+                setState(() {});
+              },
+        /*onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -68,7 +68,7 @@ class _MyCustomFormState extends State<HomePage> {
           /*FirebaseFirestore.instance
               .collection('data')
               .add({'item': 'data added'});*/
-        },
+        },*/
 
         style: ElevatedButton.styleFrom(
             primary: Color.fromARGB(255, 168, 230, 255),
