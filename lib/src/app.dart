@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'blocs/entries_provider.dart';
-import '../home/home.dart';
+import 'package:team2/pages/home_screen.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class App extends StatelessWidget {
               textTheme: Theme.of(context).textTheme.apply(
                     fontFamily: 'Open Sans',
                   )),
-          home: HomeView()),
+          home: HomeScreen()),
     );
   }
 }

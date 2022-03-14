@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team2/firestore/database.dart';
 import 'package:team2/pages/items.dart';
+import '../src/blocs/entries_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,8 +15,8 @@ class _MyCustomFormState extends State<HomePage> {
   final myPrice = TextEditingController();
 
   @override
-
   Widget build(BuildContext context) {
+    final bloc = EntriesProvider.of(context);
     return Padding(
       padding: const EdgeInsets.only(left: 500.0),
       child: Container(
@@ -26,8 +27,12 @@ class _MyCustomFormState extends State<HomePage> {
           children: <Widget>[
             Text(
               'Daily Spendings Tracker',
-              style: TextStyle(color: Color.fromARGB(255, 141, 204, 255),
-                  fontWeight: FontWeight.w700, fontSize: 70, height: 0.9), textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Color.fromARGB(255, 141, 204, 255),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 70,
+                  height: 0.9),
+              textAlign: TextAlign.center,
             ),
             SizedBox(
               height: 30,
@@ -35,14 +40,14 @@ class _MyCustomFormState extends State<HomePage> {
             AddDate(),
             AddItem(),
             AddPrice(),
-            Button(),
+            Button(bloc),
           ],
         ),
       ),
     );
   }
 
-  Widget Button() => ElevatedButton(
+  Widget Button(EntriesBloc bloc) => ElevatedButton(
         // When the user presses the button, show an alert dialog containing
         // the text that the user has entered into the text field.
         child: Text(
@@ -54,22 +59,12 @@ class _MyCustomFormState extends State<HomePage> {
           ),
         ),
         onPressed: () {
-                FireStoreDataBase().addStudents(myDate.text,myItem.text, myPrice.text);
-                setState(() {});
-              },
-        /*onPressed: () {
+          bloc.addEntry(myDate.text, int.parse(myPrice.text), myItem.text);
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    ItemsPage(myDate.text, myItem.text, myPrice.text)),
+            MaterialPageRoute(builder: (context) => ItemsPage()),
           );
-
-          /*FirebaseFirestore.instance
-              .collection('data')
-              .add({'item': 'data added'});*/
-        },*/
-
+        },
         style: ElevatedButton.styleFrom(
             primary: Color.fromARGB(255, 168, 230, 255),
             padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
