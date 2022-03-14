@@ -1,25 +1,17 @@
-
-
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:team2/home/home.dart';
-void main()  {
- /* WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();*/
-  runApp(MyApp());
-}
+import './src/app.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-            primarySwatch: Colors.blue,
-            textTheme: Theme.of(context).textTheme.apply(
-                  fontFamily: 'Open Sans',
-                )),
-        home: HomeView());
-  }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyDr-w9fi2uwHmOgMhAiRHOOr2UkmGooRck",
+          authDomain: "group-7-flutter-tracker.firebaseapp.com",
+          projectId: "group-7-flutter-tracker",
+          storageBucket: "group-7-flutter-tracker.appspot.com",
+          messagingSenderId: "862456949663",
+          appId: "1:862456949663:web:bd48c4a6074241cd9e2baa",
+          measurementId: "G-2BB2LPMYXL"));
+  runApp(App());
 }
