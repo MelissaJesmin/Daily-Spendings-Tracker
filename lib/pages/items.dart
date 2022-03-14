@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:team2/navigation/navbar.dart';
-import 'package:team2/pages/date_item.dart';
-import 'package:team2/style/center_view.dart';
+
 import 'package:getwidget/getwidget.dart';
 
 List<String> dates = [];
@@ -45,57 +43,7 @@ class ItemsPage extends StatelessWidget {
       )
     ]);
   }
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     backgroundColor: Colors.cyan[100],
-  //     body: CenterView(
-  //       child: Column(
-  //         children: <Widget>[
-  //          // NavigationBars(),
-  //           // DatePrint(context),
-  //           GFAccordion(
-  //             title: dummy_date,
-  //             content: 'Item: ' + dummy_item + '\nPrice: \$' + dummy_price,
-  //             collapsedTitleBackgroundColor: Colors.lightBlue.shade50,
-  //             expandedTitleBackgroundColor: Colors.lightBlue.shade200,
-  //             contentBackgroundColor: Colors.lightBlue[50],
-  //           ),
-  //           GFAccordion(
-  //             title: date,
-  //             content: 'Item: ' + item + '\nPrice: \$' + price,
-  //             collapsedTitleBackgroundColor: Colors.lightBlue.shade50,
-  //             expandedTitleBackgroundColor: Colors.lightBlue.shade200,
-  //             contentBackgroundColor: Colors.lightBlue[50],
-  //           ),
-  //           //ItemPrint(),
-  //           //PricePrint(),
-  //           Goback(context),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-  //  Widget DatePrint(context) => Center(
-  //       child: Card(
-  //         child: InkWell(
-  //           splashColor: Colors.blue.withAlpha(30),
-  //           onTap: () {
-  //             Navigator.push(
-  //               context,
-  //               MaterialPageRoute(builder: (context) => DateItem(date,item,price)),
-  //             );
-  //           },
-  //           child: SizedBox(
-  //             width: 100,
-  //             height: 50,
-  //             child: Text(date),
-  //           ),
-  //         ),
-  //       ),
-  //     );
-
-  //Widget ItemPrint() => Text(item);
-  //Widget PricePrint() => Text(price);
+ 
 
   Widget Goback(context) => ElevatedButton(
         onPressed: () {
