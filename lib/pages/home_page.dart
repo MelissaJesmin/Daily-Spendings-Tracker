@@ -71,7 +71,8 @@ class _MyCustomFormState extends State<HomePage> {
           ),
         ),
         onPressed: () {
-          bloc.addEntry(myDate.text, int.parse(myPrice.text), myItem.text);
+          bloc.addEntry(
+              formatDate(selectedDate), int.parse(myPrice.text), myItem.text);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => ItemsPage()),
@@ -90,7 +91,7 @@ class _MyCustomFormState extends State<HomePage> {
                 onPressed: () => _selectDate(context),
                 icon: const Icon(Icons.calendar_today,
                     color: Color.fromARGB(255, 188, 105, 202))),
-            hintText: formatter.format(selectedDate)),
+            hintText: formatDate(selectedDate)),
         readOnly: true,
       );
   Widget AddItem() => TextFormField(
@@ -121,8 +122,10 @@ class _MyCustomFormState extends State<HomePage> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
-        print(formatter.format(selectedDate));
+        print(formatDate(selectedDate));
       });
     }
   }
+
+  String formatDate(DateTime date) => formatter.format(date);
 }

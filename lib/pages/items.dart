@@ -58,7 +58,8 @@ class ItemsPage extends StatelessWidget {
               );
             }),
         floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
+            child: const Icon(Icons.home),
+            backgroundColor: Colors.pink[500],
             onPressed: () {
               Navigator.pop(context);
             }),
