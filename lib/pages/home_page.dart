@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:team2/firestore/database.dart';
 import 'package:team2/pages/items.dart';
 import '../src/blocs/entries_provider.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,6 +13,9 @@ class _MyCustomFormState extends State<HomePage> {
   final myDate = TextEditingController();
   final myItem = TextEditingController();
   final myPrice = TextEditingController();
+
+  DateTime selectedDate = DateTime.now();
+  final DateFormat formatter = DateFormat('yyyy-MM-dd');
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +41,17 @@ class _MyCustomFormState extends State<HomePage> {
               height: 30,
             ),
             AddDate(),
+            SizedBox(
+              height: 30,
+            ),
             AddItem(),
+            SizedBox(
+              height: 30,
+            ),
             AddPrice(),
+            SizedBox(
+              height: 30,
+            ),
             Button(bloc),
           ],
         ),
@@ -72,18 +84,45 @@ class _MyCustomFormState extends State<HomePage> {
       );
 
   Widget AddDate() => TextFormField(
-        controller: myDate,
         decoration: InputDecoration(
-            border: OutlineInputBorder(), hintText: 'Enter the date'),
+            border: const OutlineInputBorder(),
+            suffixIcon: IconButton(
+                onPressed: () => _selectDate(context),
+                icon: const Icon(Icons.calendar_today,
+                    color: Color.fromARGB(255, 188, 105, 202))),
+            hintText: formatter.format(selectedDate)),
+        readOnly: true,
       );
   Widget AddItem() => TextFormField(
         controller: myItem,
+        autofocus: true,
         decoration: InputDecoration(
             border: OutlineInputBorder(), hintText: 'Enter the item'),
       );
+
   Widget AddPrice() => TextFormField(
         controller: myPrice,
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
-            border: OutlineInputBorder(), hintText: 'Enter the price'),
+            border: OutlineInputBorder(),
+            prefixIcon: Column(
+                children: [Text("\$")],
+                mainAxisAlignment: MainAxisAlignment.center),
+            hintText: 'Enter the price'),
       );
+
+  _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2000),
+        lastDate: DateTime.now(),
+        initialEntryMode: DatePickerEntryMode.input);
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        print(formatter.format(selectedDate));
+      });
+    }
+  }
 }
